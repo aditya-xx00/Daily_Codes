@@ -14,5 +14,6 @@ public:
          int ans= gcd(a,b);
          string res=str1.substr(0,ans);
          return res;
+        
     }
 };
