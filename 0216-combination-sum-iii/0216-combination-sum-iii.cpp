@@ -1,6 +1,6 @@
 class Solution {
 public:
-    void Solve(int k, int n, int idx,int sum, vector<int>&temp,vector<int>& comb, vector<vector<int>>&ans){
+    void Solve(int k, int n, int idx,int sum, vector<int>temp,vector<int>& comb, vector<vector<int>>&ans){
         if(k==0 && sum==n){
             ans.push_back(temp);
             return;
@@ -9,10 +9,10 @@ public:
           return ;
         if(idx>=comb.size())
          return;
+           Solve(k,n,idx+1,sum,temp,comb,ans);
             temp.push_back(comb[idx]);
           Solve(k-1,n,idx+1,sum+comb[idx],temp,comb,ans);
-           temp.pop_back();
-           Solve(k,n,idx+1,sum,temp,comb,ans);
+        //   temp.pop_back();
     }
 
     vector<vector<int>> combinationSum3(int k, int n) {
