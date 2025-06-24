@@ -1,6 +1,6 @@
 class Solution {
 public:
-    void Solve(int k, int n, int idx,int sum, vector<int>temp,vector<int>& comb, vector<vector<int>>&ans){
+    void Solve(int k, int n, int idx,int sum, vector<int>&temp,vector<int>& comb, vector<vector<int>>&ans){
         if(k==0 && sum==n){
             ans.push_back(temp);
             return;
