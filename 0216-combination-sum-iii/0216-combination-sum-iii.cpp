@@ -12,7 +12,7 @@ public:
            Solve(k,n,idx+1,sum,temp,comb,ans);
             temp.push_back(comb[idx]);
           Solve(k-1,n,idx+1,sum+comb[idx],temp,comb,ans);
-        //   temp.pop_back();
+            temp.pop_back();
     }
 
     vector<vector<int>> combinationSum3(int k, int n) {
