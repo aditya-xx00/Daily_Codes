@@ -1,37 +1,36 @@
 class Solution {
 public:
     string minWindow(string s, string t) {
-        int n = s.size();
-        unordered_map<char, int> mp;
-        for (auto& x : t) mp[x]++;
-        int required = t.size();
-
-        int i = 0, j = 0;
-        int minLen = INT_MAX;
-        int start = 0;
-
-        while (j < n) {
-            if (mp.find(s[j]) != mp.end()){
-               if (mp[s[j]] > 0) required--;
-            mp[s[j]]--;
-            }
-            
-
-            while (required == 0) {
-                if (j - i + 1 < minLen) {
-                    minLen = j - i + 1;
-                    start = i;
-                }
-                if (mp.find(s[i]) != mp.end()){
-                  mp[s[i]]++;
-                if (mp[s[i]] > 0) required++;
-                }
-                i++;
-            }
-
-            j++;
+        int n=s.size();
+        unordered_map<char,int>mp;
+        for(auto &x:t){
+           mp[x]++;
         }
+        int count=mp.size();
 
-        return minLen == INT_MAX ? "" : s.substr(start, minLen);
+        int start=0;
+        int len=INT_MAX;
+        int i=0,j=0;
+        while(j<n){
+            if(mp.find(s[j])!=mp.end())
+              mp[s[j]]--;
+
+            if( mp.find(s[j])!=mp.end() && mp[s[j]]==0)
+                count--;
+
+            if(count==0){
+                while(count==0){
+                   start=i;
+                   len=min(len,j-i+1);
+                   if(mp.find(s[i])!=mp.end())
+                     mp[s[i]]++;
+                   if( mp.find(s[i])!=mp.end() && mp[s[i]]==1)
+                    count++;
+                  i++; 
+                }  
+            }
+           j++; 
+        }
+        return len==INT_MAX?"":s.substr(start,len);
     }
 };
