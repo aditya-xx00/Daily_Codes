@@ -1,22 +1,29 @@
+// User function template for C++
 class Solution {
   public:
     int findKRotation(vector<int> &arr) {
-        int n = arr.size();
-        int start = 0, end = n - 1;
-
-        while (start < end) {
-            int mid = start + (end - start) / 2;
-
-            // if mid element is greater than end, minimum is in right half
-            if (arr[mid] > arr[end]) {
-                start = mid + 1;
-            }
-            // else minimum is in left half including mid
-            else {
-                end = mid;
-            }
+        
+        int idx=0;
+        int n=arr.size();
+        int start=0,end=arr.size()-1;
+        int ans=INT_MAX;
+        while(start<=end){
+           int mid=start+(end-start)/2;
+           
+           if(arr[start]<=arr[mid]){
+               if(arr[start]<ans){
+                   ans=min(ans,arr[start]);
+                   idx=start;
+               }
+               start=mid+1;
+           }else{
+               if(arr[mid]<ans){
+                   ans=min(ans,arr[mid]);
+                   idx=mid;
+               }
+               end=mid-1;
+           }
         }
-
-        return start;  // index of the minimum element
+        return idx;
     }
 };
