@@ -5,7 +5,7 @@ public:
         int end=x;
         int ans=-1;
         while(start<=end){
-            long long mid=start+(end-start)/2;
+            long mid=start+(end-start)/2;
             if(mid*mid<=x){
                ans=mid;
                start=mid+1;
