@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int bouqetsFormed(vector<int>& bloomDay,int mid,int k){
+    int bouqetsFormed(vector<int>& bloomDay,int mid,int k,int m){
         int count=0;
         int total=0;
         for(int i=0;i<bloomDay.size();i++){
@@ -11,6 +11,8 @@ public:
                 total+=temp;
                 count=0;
             }
+            if(total>=m)
+             break;
         }
          total+=count/k;  
         return total;
@@ -20,6 +22,10 @@ public:
         int mini=INT_MAX, maxi=INT_MIN;
         int n=bloomDay.size();
         int ans=-1;
+        long long mul=m*k;
+        if(mul>n)
+          return ans;
+
         for(int i=0;i<n;i++){
             mini=min(mini,bloomDay[i]);
             maxi=max(maxi,bloomDay[i]);
@@ -28,7 +34,7 @@ public:
         int start=mini,end=maxi;
         while(start<=end){
             int mid=start+(end-start)/2;
-            if(bouqetsFormed(bloomDay,mid,k)>=m){
+            if(bouqetsFormed(bloomDay,mid,k,m)>=m){
                 ans=mid;
                end=mid-1; 
             }
