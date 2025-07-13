@@ -1,20 +1,15 @@
 class Solution {
 public:
-    double myPow(double x, int n) {
-       if(n==0)
-       return 1;
-      if (n == INT_MIN) {
-            return 1.0 / (x * myPow(x, -(n + 1)));
-        }
-        if (n < 0) {
-            x = 1 / x;
-            n = -n;
-        }
+   double power(double x,int n){
+        if(n==0) return 1;
+        if(n==INT_MIN) return 1/x*(power(1/x,-(n+1)));
+        if(n<0) return power(1/x,-n);
         
-        double half = myPow(x, n / 2);
-        if (n % 2 == 0)
-            return half * half;
-        else
-            return half * half * x;
+
+        if(n%2==0) return power(x*x,n/2);
+        return x*power(x*x,(n-1)/2);
+   }
+    double myPow(double x, int n) {
+       return power(x,n);
     }
 };
