@@ -9,13 +9,13 @@ public:
               while(!st.empty() && nums[i%n]>=st.top() ){
                  st.pop();
               }
-              if(i<n){
+             // if(i<n){
                 if(st.empty())
                    v[i%n]=-1;
                 else{
                    v[i%n]=st.top();
                 } 
-              }
+             // }
              st.push(nums[i%n]);       
         }
         return  v;
