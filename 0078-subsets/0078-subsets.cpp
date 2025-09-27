@@ -1,22 +1,20 @@
 class Solution {
 public:
-   void Power(int idx, vector<int>&nums,vector<vector<int>>&ans,vector<int>temp){
-      if(nums.size()==idx){
-         ans.push_back(temp);
-         return;
-      }
-    
-      Power(idx+1,nums,ans,temp);
-       temp.push_back(nums[idx]);
-      Power(idx+1,nums,ans,temp);
-      return;
-   }
 
+    void subsets(vector<vector<int>>&ans, vector<int>& temp, vector<int>& nums,int i){
+       if(i==nums.size()) {
+        ans.push_back(temp);
+        return;
+       }
+       subsets(ans,temp,nums,i+1);
+        temp.push_back(nums[i]);
+       subsets(ans,temp,nums,i+1);
+       temp.pop_back();
+    }
     vector<vector<int>> subsets(vector<int>& nums) {
         vector<vector<int>>ans;
         vector<int>temp;
-        int idx=0;
-        Power(idx,nums,ans,temp);
+        subsets(ans,temp,nums,0);
         return ans;
     }
 };
